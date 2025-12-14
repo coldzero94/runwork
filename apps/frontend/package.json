@@ -13,9 +13,14 @@
   "license": "ISC",
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
+    "@supabase/supabase-js": "^2.87.1",
+    "@tanstack/react-query": "^5.90.12",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.23.26",
     "next": "^16.0.10",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@types/node": "^25.0.2",

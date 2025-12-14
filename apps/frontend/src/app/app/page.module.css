@@ -1,0 +1,82 @@
+.container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+}
+
+.loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+/* Idle State */
+.idle {
+  text-align: center;
+  max-width: 400px;
+}
+
+.idleEmoji {
+  font-size: 5rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.idleTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.idleSubtitle {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2xl);
+  line-height: 1.6;
+}
+
+/* Run Screen */
+.runScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2xl);
+  width: 100%;
+  max-width: 600px;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.statusBadge[data-kind='work'] {
+  background-color: rgba(255, 107, 107, 0.15);
+  color: var(--color-work);
+}
+
+.statusBadge[data-kind='break'] {
+  background-color: rgba(78, 205, 196, 0.15);
+  color: var(--color-break);
+}
+
+.statusBadge[data-kind='neutral'] {
+  background-color: rgba(149, 165, 166, 0.15);
+  color: var(--color-neutral);
+}
+
+.endSection {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-border-light);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

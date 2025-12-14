@@ -1,0 +1,31 @@
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.digit {
+  min-width: 2ch;
+  text-align: center;
+}
+
+.separator {
+  opacity: 0.5;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 768px) {
+  .timer {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  transition: all var(--transition-fast);
+  min-width: 100px;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.emoji {
+  font-size: 2rem;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* Active states */
+.button.active {
+  border-width: 3px;
+}
+
+.work.active {
+  border-color: var(--color-work);
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+.work.active .label {
+  color: var(--color-work);
+}
+
+.break.active {
+  border-color: var(--color-break);
+  background-color: rgba(78, 205, 196, 0.1);
+}
+
+.break.active .label {
+  color: var(--color-break);
+}
+
+.neutral.active {
+  border-color: var(--color-neutral);
+  background-color: rgba(149, 165, 166, 0.1);
+}
+
+.neutral.active .label {
+  color: var(--color-neutral);
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: var(--spacing-md);
+    min-width: 80px;
+  }
+
+  .emoji {
+    font-size: 1.5rem;
+  }
+}

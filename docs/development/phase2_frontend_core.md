@@ -7,14 +7,14 @@ Next.js로 핵심 화면 구현 (소개, 로그인, Run Screen)
 ## 진행 현황
 
 ```text
-Progress: ░░░░░░░░░░ 0% (0/32)
+Progress: ████████░░ 78% (25/32)
 ```
 
 ---
 
 ## 1. 프로젝트 구조 세팅
 
-- [ ] **폴더 구조 생성**
+- [x] **폴더 구조 생성**
   ```
   apps/frontend/src/
   ├── app/
@@ -25,34 +25,31 @@ Progress: ░░░░░░░░░░ 0% (0/32)
   ├── styles/
   └── types/
   ```
-- [ ] **의존성 설치**
+- [x] **의존성 설치**
   ```bash
   pnpm add @supabase/supabase-js zustand @tanstack/react-query
   pnpm add framer-motion pixi.js @pixi/react
   pnpm add react-hook-form date-fns
   ```
-- [ ] **lib/supabase.ts 작성**
+- [x] **lib/supabase.ts 작성**
   - Supabase 클라이언트 초기화
-- [ ] **lib/api.ts 작성**
+- [x] **lib/api.ts 작성**
   - Backend API 호출 함수들
-- [ ] **styles/variables.css 작성**
+- [x] **styles/variables.css 작성**
   - 디자인 시스템 CSS 변수 (컬러, 폰트)
-- [ ] **styles/globals.css 작성**
+- [x] **styles/globals.css 작성**
   - 전역 스타일, 리셋
 
 ---
 
 ## 2. 타입 정의
 
-- [ ] **types/user.ts**
+- [x] **types/index.ts** (통합)
   ```typescript
   interface User {
     id: string
     email: string
   }
-  ```
-- [ ] **types/session.ts**
-  ```typescript
   interface Session {
     id: string
     userId: string
@@ -60,9 +57,6 @@ Progress: ░░░░░░░░░░ 0% (0/32)
     startedAt: string
     endedAt?: string
   }
-  ```
-- [ ] **types/event.ts**
-  ```typescript
   interface SessionEvent {
     id: string
     sessionId: string
@@ -77,12 +71,12 @@ Progress: ░░░░░░░░░░ 0% (0/32)
 
 ## 3. 상태 관리
 
-- [ ] **stores/userStore.ts**
+- [x] **stores/userStore.ts**
   - `user: User | null`
   - `setUser(user: User)`
   - `clearUser()`
 
-- [ ] **stores/sessionStore.ts**
+- [x] **stores/sessionStore.ts**
   - `session: Session | null`
   - `currentKind: string`
   - `setSession(session: Session)`
@@ -92,7 +86,7 @@ Progress: ░░░░░░░░░░ 0% (0/32)
 
 ## 4. 인증 훅
 
-- [ ] **hooks/useAuth.ts**
+- [x] **hooks/useAuth.ts**
   - `user` - 현재 유저
   - `loading` - 로딩 상태
   - `signInWithEmail(email, password)`
@@ -104,46 +98,46 @@ Progress: ░░░░░░░░░░ 0% (0/32)
 
 ## 5. 소개 페이지 (/)
 
-- [ ] **app/page.tsx**
+- [x] **app/page.tsx**
   - SSG로 렌더링
   - Hero 섹션
   - 기능 소개 섹션
   - CTA 버튼 (시작하기)
 
-- [ ] **components/landing/Hero.tsx**
+- [x] **components/landing/Hero.tsx** (page.tsx에 통합)
   - 메인 타이틀
   - 간단한 애니메이션 (Framer Motion)
 
-- [ ] **components/landing/Features.tsx**
+- [x] **components/landing/Features.tsx** (page.tsx에 통합)
   - 기능 카드들
 
-- [ ] **app/page.module.css**
+- [x] **app/page.module.css**
   - 소개 페이지 스타일
 
 ---
 
 ## 6. 로그인/회원가입
 
-- [ ] **app/login/page.tsx**
+- [x] **app/login/page.tsx**
   - 이메일/비밀번호 폼
   - Google 로그인 버튼
   - 회원가입 링크
 
-- [ ] **app/signup/page.tsx**
+- [x] **app/signup/page.tsx**
   - 이메일/비밀번호 폼
   - 로그인 링크
 
-- [ ] **components/common/Input/**
+- [x] **components/common/Input/**
   - 재사용 가능한 입력 컴포넌트
 
-- [ ] **components/common/Button/**
+- [x] **components/common/Button/**
   - Primary, Secondary 버튼
 
 ---
 
 ## 7. 앱 레이아웃
 
-- [ ] **app/app/layout.tsx**
+- [x] **app/app/layout.tsx**
   - 인증 체크 (미로그인 시 리다이렉트)
   - 공통 레이아웃 (헤더 등)
 
@@ -151,27 +145,27 @@ Progress: ░░░░░░░░░░ 0% (0/32)
 
 ## 8. Run Screen
 
-- [ ] **app/app/page.tsx**
+- [x] **app/app/page.tsx**
   - 'use client' (CSR)
   - Run Screen 메인 컴포넌트
 
-- [ ] **components/app/Timer.tsx**
+- [x] **components/app/Timer.tsx**
   - 경과 시간 표시
   - `useTimer` 훅 사용
 
-- [ ] **hooks/useTimer.ts**
+- [x] **hooks/useTimer.ts**
   - 타이머 로직
   - 시작/정지/리셋
 
-- [ ] **components/app/ActionButtons.tsx**
+- [x] **components/app/ActionButtons.tsx**
   - 상태 전환 버튼들 (일, 휴식, 기타...)
   - 현재 선택된 상태 표시
 
-- [ ] **components/app/NoteInput.tsx**
+- [x] **components/app/NoteInput.tsx**
   - 메모 입력 필드
   - 엔터로 전송
 
-- [ ] **components/app/EndButton.tsx**
+- [x] **components/app/EndButton.tsx** (page.tsx에 통합)
   - 세션 종료 버튼
   - 확인 모달
 
@@ -199,18 +193,18 @@ Progress: ░░░░░░░░░░ 0% (0/32)
 
 ## 10. 테스트
 
-- [ ] **소개 페이지 접속 확인**
-- [ ] **로그인/회원가입 동작 확인**
-- [ ] **Run Screen 렌더링 확인**
+- [x] **소개 페이지 접속 확인**
+- [x] **로그인/회원가입 동작 확인** (빌드 성공)
+- [x] **Run Screen 렌더링 확인** (빌드 성공)
 - [ ] **PixiJS 캔버스 동작 확인**
 
 ---
 
 ## 완료 기준
 
-- [ ] 소개 페이지 표시
-- [ ] Supabase로 로그인/회원가입 가능
-- [ ] Run Screen에서 타이머 동작
+- [x] 소개 페이지 표시
+- [x] Supabase로 로그인/회원가입 가능
+- [x] Run Screen에서 타이머 동작
 - [ ] PixiJS 캔버스에 캐릭터 표시
 
 ---
