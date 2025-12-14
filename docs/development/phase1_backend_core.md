@@ -7,7 +7,7 @@ Go + Gin으로 핵심 API 구현
 ## 진행 현황
 
 ```text
-Progress: ░░░░░░░░░░ 0% (0/28)
+Progress: ░░░░░░░░░░ 0% (0/32)
 ```
 
 ---
@@ -15,7 +15,8 @@ Progress: ░░░░░░░░░░ 0% (0/28)
 ## 1. 프로젝트 구조 세팅
 
 - [ ] **폴더 구조 생성**
-  ```
+
+  ```text
   apps/backend/
   ├── cmd/server/main.go
   ├── internal/
@@ -26,6 +27,7 @@ Progress: ░░░░░░░░░░ 0% (0/28)
   │   ├── handler/
   │   ├── middleware/
   │   └── router/
+  ├── migrations/
   └── pkg/response/
   ```
 - [ ] **의존성 설치**
@@ -34,6 +36,14 @@ Progress: ░░░░░░░░░░ 0% (0/28)
   go get -u gorm.io/gorm
   go get -u gorm.io/driver/postgres
   go get -u github.com/joho/godotenv
+  ```
+- [ ] **golang-migrate CLI 설치**
+  ```bash
+  # macOS
+  brew install golang-migrate
+
+  # 또는 go install
+  go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
   ```
 - [ ] **config/config.go 작성**
   - 환경 변수 로드

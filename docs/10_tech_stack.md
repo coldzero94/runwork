@@ -89,6 +89,7 @@ flowchart TB
 | Language | Go | 1.21+ | |
 | Framework | Gin | latest | HTTP 프레임워크 |
 | ORM | GORM | latest | PostgreSQL 연동 |
+| Migration | golang-migrate | latest | DB 스키마 버전 관리 |
 | Container | Docker | | Fly.io 배포용 |
 
 ### 3.3 Database
@@ -412,6 +413,12 @@ apps/backend/
 ├── pkg/                         # 외부 공개 가능한 패키지
 │   └── response/
 │       └── response.go          # API 응답 포맷
+│
+├── migrations/                  # DB 마이그레이션 파일
+│   ├── 000001_create_users.up.sql
+│   ├── 000001_create_users.down.sql
+│   ├── 000002_create_sessions.up.sql
+│   └── ...
 │
 ├── go.mod
 ├── go.sum
