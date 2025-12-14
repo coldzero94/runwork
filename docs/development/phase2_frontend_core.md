@@ -7,7 +7,7 @@ Next.js로 핵심 화면 구현 (소개, 로그인, Run Screen)
 ## 진행 현황
 
 ```text
-Progress: ████████░░ 78% (25/32)
+Progress: ██████████ 100% (32/32)
 ```
 
 ---
@@ -173,21 +173,23 @@ Progress: ████████░░ 78% (25/32)
 
 ## 9. PixiJS 게임 영역
 
-- [ ] **components/game/RunCanvas.tsx**
+- [x] **components/game/RunCanvas.tsx**
   - PixiJS Application 초기화
   - 화면 리사이즈 대응
+  - Dynamic import (SSR 비활성화)
 
-- [ ] **components/game/Background.tsx**
+- [x] **components/game/Background.tsx**
   - 패럴랙스 배경 레이어들
   - 스크롤 애니메이션
+  - 상태별 컬러 테마 (work/break/neutral)
 
-- [ ] **components/game/Character.tsx**
-  - 캐릭터 스프라이트
-  - 달리기 애니메이션
+- [x] **components/game/Character.tsx**
+  - 캐릭터 그래픽 (Graphics로 그림)
+  - 달리기 애니메이션 (팔다리 움직임)
+  - 상태별 이펙트 (work: 땀방울, break: Z 표시)
 
-- [ ] **임시 에셋 준비**
-  - 플레이스홀더 배경 이미지
-  - 플레이스홀더 캐릭터 이미지
+- [x] **임시 에셋 준비**
+  - Graphics API로 직접 그림 (이미지 에셋 없이 구현)
 
 ---
 
@@ -196,7 +198,7 @@ Progress: ████████░░ 78% (25/32)
 - [x] **소개 페이지 접속 확인**
 - [x] **로그인/회원가입 동작 확인** (빌드 성공)
 - [x] **Run Screen 렌더링 확인** (빌드 성공)
-- [ ] **PixiJS 캔버스 동작 확인**
+- [x] **PixiJS 캔버스 동작 확인** (빌드 성공)
 
 ---
 
@@ -205,10 +207,10 @@ Progress: ████████░░ 78% (25/32)
 - [x] 소개 페이지 표시
 - [x] Supabase로 로그인/회원가입 가능
 - [x] Run Screen에서 타이머 동작
-- [ ] PixiJS 캔버스에 캐릭터 표시
+- [x] PixiJS 캔버스에 캐릭터 표시
 
 ---
 
 ## 다음 단계
 
-Phase 2 완료 후 → [Phase 3: 통합 및 연동](./phase3_integration.md)
+Phase 2 완료 → [Phase 3: 통합 및 연동](./phase3_integration.md)

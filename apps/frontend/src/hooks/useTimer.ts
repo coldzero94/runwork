@@ -7,8 +7,9 @@ export function useTimer(startTime: Date | null) {
 
   useEffect(() => {
     if (!startTime) {
-      setElapsed(0)
-      return
+      // Reset elapsed via timeout to avoid synchronous setState
+      const resetTimeout = setTimeout(() => setElapsed(0), 0)
+      return () => clearTimeout(resetTimeout)
     }
 
     const updateElapsed = () => {
@@ -17,10 +18,14 @@ export function useTimer(startTime: Date | null) {
       setElapsed(diff)
     }
 
-    updateElapsed()
+    // Initial update via timeout to avoid synchronous setState
+    const initialTimeout = setTimeout(updateElapsed, 0)
     const interval = setInterval(updateElapsed, 1000)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearTimeout(initialTimeout)
+      clearInterval(interval)
+    }
   }, [startTime])
 
   const formatTime = useCallback((seconds: number) => {

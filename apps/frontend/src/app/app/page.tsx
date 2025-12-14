@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { useCallback, useEffect, useState } from 'react'
 import { useSessionStore } from '@/stores/sessionStore'
 import { Timer } from '@/components/app/Timer'
 import { ActionButtons } from '@/components/app/ActionButtons'
@@ -10,17 +11,19 @@ import * as api from '@/lib/api'
 import type { ActionKind } from '@/types'
 import styles from './page.module.css'
 
+// Dynamic import for PixiJS (client-side only)
+const RunCanvas = dynamic(
+  () => import('@/components/game/RunCanvas').then((mod) => mod.RunCanvas),
+  { ssr: false }
+)
+
 export default function AppPage() {
   const { session, currentKind, setSession, setCurrentKind, clearSession } =
     useSessionStore()
   const [loading, setLoading] = useState(true)
   const [actionLoading, setActionLoading] = useState(false)
 
-  useEffect(() => {
-    loadCurrentSession()
-  }, [])
-
-  const loadCurrentSession = async () => {
+  const loadCurrentSession = useCallback(async () => {
     try {
       const currentSession = await api.getCurrentSession()
       if (currentSession) {
@@ -40,7 +43,11 @@ export default function AppPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [setSession, setCurrentKind])
+
+  useEffect(() => {
+    loadCurrentSession()
+  }, [loadCurrentSession])
 
   const handleStartSession = async () => {
     setActionLoading(true)
@@ -140,6 +147,8 @@ export default function AppPage() {
           {currentKind === 'break' && '☕ 휴식 중'}
           {currentKind === 'neutral' && '🌿 기타'}
         </div>
+
+        <RunCanvas currentKind={currentKind} />
 
         <Timer startTime={startTime} />
 
