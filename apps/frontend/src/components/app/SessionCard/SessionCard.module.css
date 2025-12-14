@@ -1,0 +1,94 @@
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.startTime,
+.endTime {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.separator {
+  color: var(--color-text-muted);
+}
+
+.duration {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  background-color: var(--color-border-light);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+}
+
+.timeline {
+  display: flex;
+  height: 12px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+.segment {
+  height: 100%;
+  min-width: 4px;
+}
+
+.segment[data-kind='work'] {
+  background-color: var(--color-work);
+}
+
+.segment[data-kind='break'] {
+  background-color: var(--color-break);
+}
+
+.segment[data-kind='neutral'] {
+  background-color: var(--color-neutral);
+}
+
+.legend {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+}
+
+.legendDot[data-kind='work'] {
+  background-color: var(--color-work);
+}
+
+.legendDot[data-kind='break'] {
+  background-color: var(--color-break);
+}
+
+.legendDot[data-kind='neutral'] {
+  background-color: var(--color-neutral);
+}

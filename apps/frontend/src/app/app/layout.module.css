@@ -17,31 +17,57 @@
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
+  text-decoration: none;
 }
 
-.userInfo {
+.nav {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
 }
 
-.email {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.logoutButton {
-  padding: var(--spacing-xs) var(--spacing-md);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  border: 1px solid var(--color-border);
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text-secondary);
   transition: all var(--transition-fast);
 }
 
-.logoutButton:hover {
-  color: var(--color-error);
-  border-color: var(--color-error);
+.navItem:hover {
+  background-color: var(--color-border-light);
+  color: var(--color-text-primary);
+}
+
+.navItem[data-active='true'] {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.navIcon {
+  font-size: var(--font-size-base);
+}
+
+.navLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+@media (max-width: 600px) {
+  .navLabel {
+    display: none;
+  }
+
+  .navItem {
+    padding: var(--spacing-sm);
+  }
+
+  .navIcon {
+    font-size: var(--font-size-lg);
+  }
 }
 
 .main {

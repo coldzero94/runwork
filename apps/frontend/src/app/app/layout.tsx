@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
 import styles from './layout.module.css'
 
@@ -11,7 +12,8 @@ export default function AppLayout({
   children: React.ReactNode
 }) {
   const router = useRouter()
-  const { user, loading, signOut } = useAuth()
+  const pathname = usePathname()
+  const { user, loading } = useAuth()
 
   useEffect(() => {
     if (!loading && !user) {
@@ -32,16 +34,31 @@ export default function AppLayout({
     return null
   }
 
+  const navItems = [
+    { href: '/app', label: '홈', icon: '🏃' },
+    { href: '/app/history', label: '기록', icon: '📅' },
+    { href: '/app/settings', label: '설정', icon: '⚙️' },
+  ]
+
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
-        <div className={styles.logo}>Runwork</div>
-        <div className={styles.userInfo}>
-          <span className={styles.email}>{user.email}</span>
-          <button onClick={signOut} className={styles.logoutButton}>
-            로그아웃
-          </button>
-        </div>
+        <Link href="/app" className={styles.logo}>
+          Runwork
+        </Link>
+        <nav className={styles.nav}>
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={styles.navItem}
+              data-active={pathname === item.href}
+            >
+              <span className={styles.navIcon}>{item.icon}</span>
+              <span className={styles.navLabel}>{item.label}</span>
+            </Link>
+          ))}
+        </nav>
       </header>
       <main className={styles.main}>{children}</main>
     </div>
