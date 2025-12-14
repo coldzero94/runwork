@@ -2,38 +2,35 @@ package main
 
 import (
 	"log"
-	"net/http"
-	"os"
 
-	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
+	"github.com/coby/runwork/apps/backend/internal/config"
+	"github.com/coby/runwork/apps/backend/internal/models"
+	"github.com/coby/runwork/apps/backend/internal/router"
 )
 
 func main() {
-	// Load .env file
-	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file found")
+	// Load configuration
+	cfg, err := config.Load()
+	if err != nil {
+		log.Fatal("Failed to load config:", err)
 	}
 
-	// Get port from environment
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
+	// Connect to database
+	if err := cfg.ConnectDB(); err != nil {
+		log.Fatal("Failed to connect to database:", err)
 	}
 
-	// Initialize Gin router
-	r := gin.Default()
+	// Auto migrate models
+	if err := cfg.DB.AutoMigrate(&models.User{}, &models.Session{}, &models.Event{}); err != nil {
+		log.Fatal("Failed to migrate database:", err)
+	}
 
-	// Health check endpoint
-	r.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"status": "ok",
-		})
-	})
+	// Setup router
+	r := router.Setup(cfg.DB)
 
 	// Start server
-	log.Printf("Server starting on port %s", port)
-	if err := r.Run(":" + port); err != nil {
+	log.Printf("Server starting on port %s", cfg.Port)
+	if err := r.Run(":" + cfg.Port); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
 }
